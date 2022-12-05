@@ -43,9 +43,11 @@ setup(
     name="heyfour",
     packages=[
         "heyfour",
+        "heyfour.standards",
     ],
     package_data={
         "heyfour": ["py.typed"],
+        "heyfour.standards": ["py.typed"],
     },
     project_urls={
         "Documentation": "https://heyfour.dev",
