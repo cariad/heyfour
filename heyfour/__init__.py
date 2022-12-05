@@ -6,6 +6,10 @@ For usage and support, see https://github.com/cariad/heyfour.
 
 from importlib.resources import files
 
+from heyfour.page import Page, page_of
+from heyfour.size import Size
+from heyfour.standards import size_of
+
 
 def version() -> str:
     """
@@ -17,5 +21,9 @@ def version() -> str:
 
 
 __all__ = [
+    "Page",
+    "Size",
+    "page_of",
+    "size_of",
     "version",
 ]
