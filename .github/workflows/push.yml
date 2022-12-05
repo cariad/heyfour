@@ -24,10 +24,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Validate
-        run: >
-          pip install --upgrade --user -r requirements.dev.txt &&
-          ./validate.sh
+      - run: pip install pytest && pytest -vv
 
   validate-current:
     runs-on: ubuntu-latest
