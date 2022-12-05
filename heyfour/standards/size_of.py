@@ -1,4 +1,4 @@
-from heyfour.size import Size
+from heyfour.size import Millimeters
 from heyfour.standards.a_series import ASeries
 
 standards = [
@@ -6,7 +6,7 @@ standards = [
 ]
 
 
-def size_of(code: str) -> Size:
+def size_of(code: str) -> Millimeters:
     """
     Gets the size of `code` in portrait-oriented millimetres.
 

@@ -1,17 +1,19 @@
 from __future__ import annotations
 
-from math import isclose
-from typing import Any
+from math import ceil, isclose
+from typing import Any, Generic, TypeVar
+
+UnitT = TypeVar("UnitT", bound=float | int)
 
 
-class Size:
+class Size(Generic[UnitT]):
     """
     Size.
 
     The width and height will be arranged to guarantee portait orientation.
     """
 
-    def __init__(self, width: float, height: float) -> None:
+    def __init__(self, width: UnitT, height: UnitT) -> None:
         self._width = min(width, height)
         self._height = max(width, height)
 
@@ -28,12 +30,8 @@ class Size:
     def __repr__(self) -> str:
         return f"{self._width} x {self._height}"
 
-    def __truediv__(self, other: Any) -> Size:
-        f = float(other)
-        return Size(self._width / f, self._height / f)
-
     @property
-    def height(self) -> float:
+    def height(self) -> UnitT:
         """
         Height.
         """
@@ -41,9 +39,30 @@ class Size:
         return self._height
 
     @property
-    def width(self) -> float:
+    def width(self) -> UnitT:
         """
         Width.
         """
 
         return self._width
+
+
+MILLIMETERS_PER_INCH = 25.4
+
+
+class Millimeters(Size[int]):
+    @property
+    def inches(self) -> Inches:
+        return Inches(
+            self._width / MILLIMETERS_PER_INCH,
+            self._height / MILLIMETERS_PER_INCH,
+        )
+
+
+class Inches(Size[float]):
+    @property
+    def millimeters(self) -> Millimeters:
+        return Millimeters(
+            ceil(self._width * MILLIMETERS_PER_INCH),
+            ceil(self._height * MILLIMETERS_PER_INCH),
+        )

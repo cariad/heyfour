@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from heyfour.size import Size
+from heyfour.size import Millimeters
 
 
 class Standard(ABC):
@@ -10,7 +10,7 @@ class Standard(ABC):
     """
 
     @abstractmethod
-    def size(self, code: str) -> Optional[Size]:
+    def size(self, code: str) -> Optional[Millimeters]:
         """
         Attempts to translate `code` to a `Size` in portrait-oriented
         millimetres.

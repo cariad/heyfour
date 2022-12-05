@@ -1,16 +1,17 @@
 from pytest import mark, raises
 
-from heyfour import Size, size_of
+from heyfour import size_of
+from heyfour.size import Millimeters
 
 
 @mark.parametrize(
     "t, expect",
     [
-        ("a3", Size(297, 420)),
-        ("2A0", Size(1189, 1682)),
+        ("a3", Millimeters(297, 420)),
+        ("2A0", Millimeters(1189, 1682)),
     ],
 )
-def test(t: str, expect: Size) -> None:
+def test(t: str, expect: Millimeters) -> None:
     assert size_of(t) == expect
 
 

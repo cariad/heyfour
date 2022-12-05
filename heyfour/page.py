@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from heyfour.size import Size
+from heyfour.size import Inches, Millimeters
 from heyfour.standards import size_of
 
 
@@ -9,27 +9,33 @@ class Page:
     Page.
     """
 
-    def __init__(self, size_millimeters: Size) -> None:
-        self._mm = size_millimeters
+    def __init__(self, size: Inches | Millimeters) -> None:
+        self._size = size
 
     @property
-    def inches(self) -> Size:
+    def inches(self) -> Inches:
         """
         Size in inches.
         """
 
-        return self._mm / 25.4
+        if isinstance(self._size, Inches):
+            return self._size
+
+        return self._size.inches
 
     @property
-    def millimeters(self) -> Size:
+    def millimeters(self) -> Millimeters:
         """
         Size in millimetres.
         """
 
-        return self._mm
+        if isinstance(self._size, Millimeters):
+            return self._size
+
+        return self._size.millimeters
 
 
-def page_of(size: str | Size) -> Page:
+def page_of(size: str | Inches | Millimeters) -> Page:
     """
     Creates a page.
 

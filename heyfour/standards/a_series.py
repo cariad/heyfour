@@ -3,10 +3,10 @@ from __future__ import annotations
 from re import compile  # pylint: disable=redefined-builtin
 from typing import Optional
 
-from heyfour.size import Size
+from heyfour.size import Millimeters
 from heyfour.standards.standard import Standard
 
-A0 = Size(841, 1189)
+A0 = Millimeters(841, 1189)
 
 
 class LargeASeries(Standard):
@@ -17,7 +17,7 @@ class LargeASeries(Standard):
     def __init__(self) -> None:
         self._pattern = compile(r"^(\d+)[aA]0$")
 
-    def size(self, code: str) -> Optional[Size]:
+    def size(self, code: str) -> Optional[Millimeters]:
         """
         Attempts to translate `code` to a large A-series `Size` in
         portrait-oriented millimetres.
@@ -37,7 +37,7 @@ class LargeASeries(Standard):
             width = height
             height = h
 
-        return Size(width, height)
+        return Millimeters(width, height)
 
 
 class SmallASeries(Standard):
@@ -48,7 +48,7 @@ class SmallASeries(Standard):
     def __init__(self) -> None:
         self._pattern = compile(r"^[aA](\d+)$")
 
-    def size(self, code: str) -> Optional[Size]:
+    def size(self, code: str) -> Optional[Millimeters]:
         """
         Attempts to translate `code` to a small A-series `Size` in
         portrait-oriented millimetres.
@@ -68,7 +68,7 @@ class SmallASeries(Standard):
             height = width
             width = w
 
-        return Size(width, height)
+        return Millimeters(width, height)
 
 
 class ASeries(Standard):
@@ -80,7 +80,7 @@ class ASeries(Standard):
         self._small = SmallASeries()
         self._large = LargeASeries()
 
-    def size(self, code: str) -> Optional[Size]:
+    def size(self, code: str) -> Optional[Millimeters]:
         """
         Attempts to translate `code` to an A-series `Size` in portrait-oriented
         millimetres.
