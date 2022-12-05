@@ -1,0 +1,8 @@
+site_name: HeyFour
+site_url: https://heyfour.dev/
+
+nav:
+  - index.md
+
+theme:
+  name: material
